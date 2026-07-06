@@ -1,10 +1,19 @@
-# Swim Meet Checker (private web app)
+# Swim Meet Checker (web app)
 
-A self-contained website that shows Ethan and Lucas's current times and, when you drop a
-PVS meet-announcement PDF on it, tells you what each boy qualifies for (championship
-meets) or which events to enter and why (open meets). Everything runs in your browser:
-the PDF is parsed locally with pdf.js, and the times are baked into `swim-data.js`. No
-server logic, no account, no AI, no tokens.
+Live at **https://yutingf.github.io/swimmeet/** (a standalone project site, separate from
+the academic homepage at yutingf.github.io and never linked from it).
+
+A self-contained website that shows Ethan and Lucas's current times and, when you drop or
+paste a PVS meet-announcement PDF, tells you what each boy qualifies for and which events
+to sign up for, with the meet event number on each. Everything runs in your browser: the
+PDF is parsed locally with pdf.js, and the times are baked into `swim-data.js`. No server
+logic, no account, no AI, no tokens.
+
+## Keeping the published site's times current
+The site shows whatever is in `swim-data.js` at publish time. After the boys race, refresh
+and re-publish: run `code/swim_data.py` (regenerates `webapp/swim-data.js`), then push the
+updated `webapp/` contents to the `yutingf/swimmeet` repo. The times only change after
+meets, so this is occasional.
 
 ## Daily use (fully private, on this Mac)
 

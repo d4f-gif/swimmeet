@@ -78,6 +78,7 @@
       : "Open meet — no cuts. Lineup balances closeness to the next level against stale PBs.";
     out.appendChild(el("h2", null, esc(res.meet)));
     out.appendChild(el("p", "muted", esc(res.course) + " · " + esc(res.startDate || "date n/a") + " · " + sub));
+    if (res.venue) out.appendChild(el("p", "venue", "📍 " + esc(res.venue)));
 
     res.swimmers.forEach(function (sw) {
       var card = el("div", "swimmer-card");
@@ -123,6 +124,25 @@
         "<strong>No qualifying times yet.</strong> " +
         (sw.near.length ? "Closest: " + esc(sw.near[0].event) + " (" + esc(sw.near[0].row.time) +
           "), " + S.csToStr(sw.near[0].off) + " over the " + sw.near[0].course + " cut." : "")));
+    }
+    var entered = sw.enter.concat(sw.bonus || []);
+    var sched = entered.filter(function (e) { return sw.sessionOf && sw.sessionOf[e] && sw.sessionOf[e].start; });
+    if (sched.length) {
+      var box = el("div", "sched");
+      box.appendChild(el("div", "sched-head", "When &amp; where"));
+      sched.forEach(function (e) {
+        var se = sw.sessionOf[e];
+        var pos = se.size ? "about event " + (se.order + 1) + " of " + se.size : "";
+        var est = se.estimate ? ", est. ~" + se.estimate : "";
+        var fin = se.finalsWarmup ? " Finals if top heat: warm-up " + se.finalsWarmup + "." : "";
+        box.appendChild(el("div", "sched-row", "<strong>" + lab(sw, e) + "</strong> — " +
+          esc(se.day || "day n/a") + ": arrive for warm-up " + esc(se.warmup || "?") +
+          ", starts " + esc(se.start) + "; " + pos + est + " (rough)." + esc(fin)));
+      });
+      box.appendChild(el("div", "sched-note muted", "Swim-time estimates are rough " +
+        "(heats depend on entries). Be there by warm-up and ready from the session start; " +
+        "the posted heat sheet gives the exact heat and lane."));
+      card.appendChild(box);
     }
     if (sw.qual.length) {
       var t = el("table");

@@ -103,8 +103,78 @@
   }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
 
+  // ---- session schedule + venue (mirrors code/meet_pdf.py) ----
+  var PER_EVENT_MIN = 22;
+  var DAY_RE = /(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),?\s+([A-Z][a-z]+)\s+(\d{1,2}),?\s+(\d{4})/;
+  var WARMUP_RE = /Warm[\s-]*up:\s*([0-9:apmAPM.\s–-]+?),\s*Events?:\s*([0-9:apmAPM.]+)/i;
+  function toMin(t) {
+    var m = /(\d{1,2})(?::(\d{2}))?\s*([apAP][mM])/.exec(t.trim());
+    if (!m) return null;
+    var h = parseInt(m[1], 10), mm = parseInt(m[2] || "0", 10), ap = m[3].toLowerCase();
+    if (ap === "pm" && h !== 12) h += 12;
+    if (ap === "am" && h === 12) h = 0;
+    return h * 60 + mm;
+  }
+  function minStr(mins) {
+    mins = ((mins % 1440) + 1440) % 1440;
+    var h = Math.floor(mins / 60), mm = mins % 60, ap = h < 12 ? "am" : "pm";
+    return ((h % 12) || 12) + ":" + pad(mm) + ap;
+  }
+  function venue(text) {
+    var lines = text.split("\n");
+    for (var i = 0; i < lines.length; i++) {
+      if (/^\s*FACILITY\b/.test(lines[i])) {
+        var parts = [lines[i].replace(/.*FACILITY/, "").trim()];
+        for (var j = i + 1; j < Math.min(i + 4, lines.length); j++) {
+          var s = lines[j].trim();
+          if (s && s.indexOf("●") < 0) parts.push(s); else break;
+        }
+        return parts.filter(Boolean).join(", ");
+      }
+    }
+    return "";
+  }
+  function parseSessions(text) {
+    var sessions = {}, dayFinals = {}, curDay = null, curType = null,
+        curWu = null, curStart = null, order = 0;
+    text.split("\n").forEach(function (line) {
+      var d = DAY_RE.exec(line);
+      if (d) curDay = d[1] + ", " + d[2] + " " + parseInt(d[3], 10) + ", " + d[4];
+      if (/\bFINALS\b/.test(line)) curType = "finals";
+      else if (/Prelim|Timed Finals/i.test(line)) curType = "prelim";
+      var w = WARMUP_RE.exec(line);
+      if (w) {
+        curWu = w[1].replace(/\s+/g, "").replace("–", "-");
+        curStart = w[2].replace(/\s+/g, ""); order = 0;
+        if (curType === "finals" && curDay) dayFinals[curDay] = [curWu, curStart];
+        return;
+      }
+      var m = EVENT_RE.exec(line);
+      if (m && curType === "prelim" && curWu) {
+        var num = eventNum(line.slice(0, m.index), line.slice(m.index + m[0].length));
+        if (line.indexOf("Relay") < 0 && num && !(num in sessions))
+          sessions[num] = {day: curDay, warmup: curWu, start: curStart, order: order};
+        order += 1;
+      }
+    });
+    var bySession = {};
+    Object.keys(sessions).forEach(function (n) {
+      var s = sessions[n], k = s.day + "|" + s.start;
+      bySession[k] = (bySession[k] || 0) + 1;
+    });
+    Object.keys(sessions).forEach(function (n) {
+      var s = sessions[n];
+      s.size = bySession[s.day + "|" + s.start];
+      var fin = dayFinals[s.day];
+      if (fin) { s.finalsWarmup = fin[0]; s.finalsStart = fin[1]; }
+      if (s.start && toMin(s.start) != null) s.estimate = minStr(toMin(s.start) + s.order * PER_EVENT_MIN);
+    });
+    return sessions;
+  }
+
   function toSpec(text) {
     var pg = parseGroups(text), meta = meetMeta(text), events = {};
+    var sessions = parseSessions(text);
     Object.keys(pg.groups).forEach(function (pdfGrp) {
       (GROUP_ELIGIBLE[pdfGrp] || []).forEach(function (swimGrp) {
         var dest = events[swimGrp] || (events[swimGrp] = {});
@@ -115,8 +185,14 @@
         });
       });
     });
+    Object.keys(events).forEach(function (grp) {
+      Object.keys(events[grp]).forEach(function (ev) {
+        var n = events[grp][ev].num;
+        if (n && sessions[n]) events[grp][ev].session = sessions[n];
+      });
+    });
     return {meet: meta.name || "Meet", course: meta.course, startDate: meta.start,
-            maxIndividualEvents: meta.maxEvents, cutType: pg.cutType,
+            venue: venue(text), maxIndividualEvents: meta.maxEvents, cutType: pg.cutType,
             qualifyingWindowStart: meta.window, bonusEvents: meta.bonus, events: events};
   }
 
@@ -152,7 +228,8 @@
 
   function analyzeQualify(spec, data) {
     var out = {type: "qualify", meet: spec.meet, course: spec.course,
-               startDate: spec.startDate, window: spec.qualifyingWindowStart, swimmers: []};
+               startDate: spec.startDate, window: spec.qualifyingWindowStart,
+               venue: spec.venue, swimmers: []};
     data.swimmers.forEach(function (sw) {
       var offered = spec.events[sw.ageGroup] || {}, pbs = pbsByEvent(sw);
       var qual = [], near = [], notime = [];
@@ -190,10 +267,14 @@
           .concat(notime.filter(function (e) { return !DISTANCE[e]; }));
         bonus = cands.slice(0, room);
       }
-      var numOf = {};
-      Object.keys(offered).forEach(function (e) { numOf[e] = (offered[e] || {}).num; });
+      var numOf = {}, sessionOf = {};
+      Object.keys(offered).forEach(function (e) {
+        numOf[e] = (offered[e] || {}).num;
+        sessionOf[e] = (offered[e] || {}).session;
+      });
       out.swimmers.push({name: sw.name, age: sw.age, ageGroup: sw.ageGroup,
-                         hasEvents: !!Object.keys(offered).length, numOf: numOf,
+                         hasEvents: !!Object.keys(offered).length,
+                         numOf: numOf, sessionOf: sessionOf,
                          qual: qual, near: near.slice(0, 6), notime: notime,
                          enter: enter, bonus: bonus, bonusAllow: bonusAllow,
                          cap: cap, chase: near.slice(0, 2)});

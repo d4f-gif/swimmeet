@@ -55,6 +55,11 @@ code { background: var(--line); padding: 1px 5px; border-radius: 4px; font-size:
 .suggest.ok { background: var(--ok-bg); border-left-color: var(--ok-line); }
 .suggest.none { background: var(--warn-bg); border-left-color: var(--warn-line); }
 .chase { font-size: 14px; margin: -4px 0 12px; }
+.venue { font-size: 14px; margin-top: -6px; }
+.sched { border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; margin: 6px 0 12px; }
+.sched-head { font-weight: 600; margin-bottom: 6px; }
+.sched-row { font-size: 14px; margin: 4px 0; }
+.sched-note { font-size: 12px; margin-top: 8px; }
 
 table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 14px; }
 caption { text-align: left; font-weight: 600; color: var(--muted); padding: 6px 0 2px; }
