@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ethan &amp; Lucas — Swim Meet Checker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Ethan &amp; Lucas — Swim Meet Checker</h1>
+    <p class="muted" id="pulled"></p>
+  </header>
+
+  <main>
+    <section id="checker">
+      <h2>Check a meet</h2>
+      <p class="muted">Drop a PVS meet-announcement PDF below (or tap to choose). Everything
+        runs in your browser — nothing is uploaded, no account or AI needed.</p>
+      <label id="drop" for="pdf-input">
+        <span>Drop meet PDF here, or tap to choose</span>
+        <input id="pdf-input" type="file" accept="application/pdf" hidden>
+      </label>
+      <div id="url-row">
+        <input id="pdf-url" type="url" placeholder="…or paste a link to the meet PDF">
+        <button id="pdf-url-go" type="button">Check link</button>
+      </div>
+      <p id="status" class="status"></p>
+      <div id="result"></div>
+    </section>
+
+    <section id="standing">
+      <h2>Current standing</h2>
+      <div id="dashboard"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="muted">Data: USA Swimming official API (SCY/LCM) + NVSL (McLean Marlins, 25 m).
+      Refresh by running the “Check a swim meet” launcher or <code>code/swim_data.py</code>,
+      then reload this page.</p>
+  </footer>
+
+  <script src="vendor/pdf.min.js"></script>
+  <script src="swim-data.js"></script>
+  <script src="app.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>
