@@ -1,6 +1,6 @@
 # Swim Meet Checker (web app)
 
-Live at **https://yutingf.github.io/swimmeet/** (a standalone project site, separate from
+Live at **https://d4f-gif.github.io/swimmeet/** (a standalone project site, separate from
 the academic homepage at yutingf.github.io and never linked from it).
 
 A self-contained website that shows Ethan and Lucas's current times and, when you drop or
@@ -12,7 +12,7 @@ logic, no account, no AI, no tokens.
 ## Keeping the published site's times current
 The site shows whatever is in `swim-data.js` at publish time. After the boys race, refresh
 and re-publish: run `code/swim_data.py` (regenerates `webapp/swim-data.js`), then push the
-updated `webapp/` contents to the `yutingf/swimmeet` repo. The times only change after
+updated `webapp/` contents to the `d4f-gif/swimmeet` repo. The times only change after
 meets, so this is occasional.
 
 ## Daily use (fully private, on this Mac)
