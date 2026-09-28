@@ -5,7 +5,7 @@ and write swim-data.js. Runs in GitHub Actions (see .github/workflows/refresh.ym
 published site stays current with no local machine, no tokens, no AI. Stdlib only.
 Mirrors the swimming-team pipeline in the private vault; keep the two in sync.
 """
-import datetime, json, re, time, urllib.request
+import datetime, json, re, time, urllib.error, urllib.request
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -112,14 +112,30 @@ def nvsl_best(wanted):
     return best
 
 
+def previous_data():
+    m = re.search(r"^window\.SWIM_DATA = (.*);$", (HERE / "swim-data.js").read_text(), re.M)
+    return json.loads(m.group(1))
+
+
 def main():
     standards = json.loads((HERE / "standards.json").read_text())
     today = datetime.date.today().isoformat()
     names = {s["name"] for s in SWIMMERS}
     nvsl = nvsl_best(names)
-    data = {"pulledAt": today, "swimmers": []}
+    prev = previous_data()
+    prev_by_id = {p["memberId"]: p for p in prev["swimmers"]}
+    data = {"pulledAt": today, "usasAsOf": today, "swimmers": []}
     for s in SWIMMERS:
-        rows, age = pull_usas(s)
+        try:
+            rows, age = pull_usas(s)
+        except urllib.error.HTTPError as e:
+            # USA Swimming closed anonymous per-swimmer access (403 since 2026-08-26): keep the last pulled times.
+            if e.code not in (401, 403):
+                raise
+            old = prev_by_id[s["memberId"]]
+            rows, age = old["usasBest"], old["age"]
+            data["usasAsOf"] = prev.get("usasAsOf", prev["pulledAt"])
+            print(f"USA Swimming returned {e.code} for {s['name']}; kept times as of {data['usasAsOf']}")
         nb = sorted(nvsl.get(s["name"], {}).values(), key=lambda r: r["cs"])
         data["swimmers"].append({"name": s["name"], "memberId": s["memberId"], "age": age,
                                  "ageGroup": age_group(age), "usasBest": rows,

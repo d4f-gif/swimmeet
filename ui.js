@@ -65,7 +65,11 @@
         wrap.appendChild(t2);
       }
     });
-    $("#pulled").textContent = "Times last refreshed " + (window.SWIM_PULLED_AT || DATA.pulledAt) + ".";
+    var pulled = window.SWIM_PULLED_AT || DATA.pulledAt;
+    $("#pulled").textContent = "Times last refreshed " + pulled + "." +
+      (DATA.usasAsOf && DATA.usasAsOf !== pulled
+        ? " USA Swimming times as of " + DATA.usasAsOf + " (USA Swimming now requires a login for swimmer times)."
+        : "");
   }
 
   // ---------- meet result ----------
