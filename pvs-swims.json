@@ -116,7 +116,10 @@
   "/2526tm/MeetResults26-99.zip",
   "/2526tm/MeetResults26-NCAP1.zip",
   "/2526tm/MeetResults26-penguin.zip",
-  "/2526tm/MeetResults26-rmscwelcome.zip"
+  "/2526tm/MeetResults26-rmscwelcome.zip",
+  "/2627tm/MeetResults27-02.zip",
+  "/2627tm/MeetResults27-03.zip",
+  "/2627tm/MeetResults27-04.zip"
  ],
  "swims": [
   {
@@ -967,6 +970,36 @@
    "cs": 4794,
    "date": "2026-04-19",
    "meet": "2026 FXFX Pirate Pacer",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "200 Fly",
+   "course": "SCY",
+   "time": "3:01.53",
+   "cs": 18153,
+   "date": "2026-09-27",
+   "meet": "2026 Distance Run",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "500 Free",
+   "course": "SCY",
+   "time": "6:27.22",
+   "cs": 38722,
+   "date": "2026-09-26",
+   "meet": "2026 Distance Run",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "500 Free",
+   "course": "SCY",
+   "time": "7:40.51",
+   "cs": 46051,
+   "date": "2026-09-26",
+   "meet": "2026 Distance Run",
    "ageAtSwim": 9
   }
  ]
