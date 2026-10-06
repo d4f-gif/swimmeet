@@ -120,7 +120,9 @@
   "/2627tm/MeetResults27-01.zip",
   "/2627tm/MeetResults27-02.zip",
   "/2627tm/MeetResults27-03.zip",
-  "/2627tm/MeetResults27-04.zip"
+  "/2627tm/MeetResults27-04.zip",
+  "/2627tm/MeetResults27-05.zip",
+  "/2627tm/MeetResults27-06.zip"
  ],
  "swims": [
   {
@@ -1001,6 +1003,126 @@
    "cs": 46051,
    "date": "2026-09-26",
    "meet": "2026 Distance Run",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "50 Free",
+   "course": "SCY",
+   "time": "29.24",
+   "cs": 2924,
+   "date": "2026-10-03",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "100 IM",
+   "course": "SCY",
+   "time": "1:13.81",
+   "cs": 7381,
+   "date": "2026-10-03",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "50 Breast",
+   "course": "SCY",
+   "time": "37.90",
+   "cs": 3790,
+   "date": "2026-10-03",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "50 Back",
+   "course": "SCY",
+   "time": "36.21",
+   "cs": 3621,
+   "date": "2026-10-04",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "50 Fly",
+   "course": "SCY",
+   "time": "31.49",
+   "cs": 3149,
+   "date": "2026-10-04",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "100 Free",
+   "course": "SCY",
+   "time": "1:04.22",
+   "cs": 6422,
+   "date": "2026-10-04",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "100 IM",
+   "course": "SCY",
+   "time": "1:31.44",
+   "cs": 9144,
+   "date": "2026-10-03",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "50 Free",
+   "course": "SCY",
+   "time": "34.45",
+   "cs": 3445,
+   "date": "2026-10-03",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "50 Breast",
+   "course": "SCY",
+   "time": "46.90",
+   "cs": 4690,
+   "date": "2026-10-03",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "100 Free",
+   "course": "SCY",
+   "time": "1:16.96",
+   "cs": 7696,
+   "date": "2026-10-04",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "50 Back",
+   "course": "SCY",
+   "time": "40.67",
+   "cs": 4067,
+   "date": "2026-10-04",
+   "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "50 Fly",
+   "course": "SCY",
+   "time": "47.74",
+   "cs": 4774,
+   "date": "2026-10-04",
+   "meet": "33rd Annual Harvest Moon Invitational",
    "ageAtSwim": 9
   }
  ]
