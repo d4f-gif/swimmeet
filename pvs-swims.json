@@ -123,6 +123,9 @@
   "/2627tm/MeetResults27-04.zip",
   "/2627tm/MeetResults27-05.zip",
   "/2627tm/MeetResults27-06.zip",
+  "/2627tm/MeetResults27-07-claude.zip",
+  "/2627tm/MeetResults27-07-fairland.zip",
+  "/2627tm/MeetResults27-07-franconia.zip",
   "/2627tm/MeetResults27-08.zip",
   "/2627tm/MeetResults27-205.zip"
  ],
@@ -1125,6 +1128,76 @@
    "cs": 4774,
    "date": "2026-10-04",
    "meet": "33rd Annual Harvest Moon Invitational",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "200 Free",
+   "course": "SCY",
+   "time": "2:25.55",
+   "cs": 14555,
+   "date": "2026-10-10",
+   "meet": "PV October Open- CLAUDE MOORE SITE",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "100 Fly",
+   "course": "SCY",
+   "time": "1:16.21",
+   "cs": 7621,
+   "date": "2026-10-10",
+   "meet": "PV October Open- CLAUDE MOORE SITE",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "100 Breast",
+   "course": "SCY",
+   "time": "1:20.95",
+   "cs": 8095,
+   "date": "2026-10-10",
+   "meet": "PV October Open- CLAUDE MOORE SITE",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "100 Back",
+   "course": "SCY",
+   "time": "1:27.97",
+   "cs": 8797,
+   "date": "2026-10-11",
+   "meet": "PV October Open- CLAUDE MOORE SITE",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "50 Breast",
+   "course": "SCY",
+   "time": "46.47",
+   "cs": 4647,
+   "date": "2026-10-11",
+   "meet": "PV October Open- CLAUDE MOORE SITE",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "100 Free",
+   "course": "SCY",
+   "time": "1:19.25",
+   "cs": 7925,
+   "date": "2026-10-11",
+   "meet": "PV October Open- CLAUDE MOORE SITE",
+   "ageAtSwim": 9
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "100 IM",
+   "course": "SCY",
+   "time": "1:30.76",
+   "cs": 9076,
+   "date": "2026-10-11",
+   "meet": "PV October Open- CLAUDE MOORE SITE",
    "ageAtSwim": 9
   }
  ]
