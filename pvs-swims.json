@@ -140,6 +140,7 @@
   "/2627tm/MeetResults27-204.zip",
   "/2627tm/MeetResults27-205.zip",
   "/2627tm/MeetResults27-206.zip",
+  "/2627tm/MeetResults27-207.zip",
   "/2627tm/MeetResults27-21.zip",
   "/2627tm/MeetResults27-23.zip",
   "/2627tm/MeetResults27-24.zip",
@@ -147,6 +148,10 @@
   "/2627tm/MeetResults27-26.zip",
   "/2627tm/MeetResults27-27.zip",
   "/2627tm/MeetResults27-28.zip",
+  "/2627tm/MeetResults27-29-fish.zip",
+  "/2627tm/MeetResults27-29-ncap.zip",
+  "/2627tm/MeetResults27-29-occs.zip",
+  "/2627tm/MeetResults27-29-pac.zip",
   "/2627tm/MeetResults27-rmsc26.zip"
  ],
  "swims": [
@@ -1219,6 +1224,66 @@
    "date": "2026-10-11",
    "meet": "PV October Open- CLAUDE MOORE SITE",
    "ageAtSwim": 9
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "200 IM",
+   "course": "SCY",
+   "time": "2:31.53",
+   "cs": 15153,
+   "date": "2026-11-14",
+   "meet": "PV November Open - Franconia",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "CC769BD9092040",
+   "event": "200 Breast",
+   "course": "SCY",
+   "time": "2:48.65",
+   "cs": 16865,
+   "date": "2026-11-13",
+   "meet": "PV November Open - Franconia",
+   "ageAtSwim": 12
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "200 Back",
+   "course": "SCY",
+   "time": "3:06.57",
+   "cs": 18657,
+   "date": "2026-11-15",
+   "meet": "PV November Open - Franconia",
+   "ageAtSwim": 10
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "200 Breast",
+   "course": "SCY",
+   "time": "3:44.73",
+   "cs": 22473,
+   "date": "2026-11-13",
+   "meet": "PV November Open - Franconia",
+   "ageAtSwim": 10
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "200 IM",
+   "course": "SCY",
+   "time": "3:23.56",
+   "cs": 20356,
+   "date": "2026-11-14",
+   "meet": "PV November Open - Franconia",
+   "ageAtSwim": 10
+  },
+  {
+   "memberId": "5BBB4ECA30F546",
+   "event": "100 Breast",
+   "course": "SCY",
+   "time": "1:49.18",
+   "cs": 10918,
+   "date": "2026-11-14",
+   "meet": "PV November Open - Franconia",
+   "ageAtSwim": 10
   }
  ]
 }
